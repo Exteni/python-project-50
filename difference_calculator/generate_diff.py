@@ -5,12 +5,12 @@ def generate_diff(file1_path, file2_path):
     with open(file1_path) as file1, open(file2_path) as file2:
         file1 = json.load(file1)
         file2 = json.load(file2)
-    sorted_diff = create_formated_dict(file1, file2)
-    print(json.dumps(sorted_diff, indent=2))
+    sorted_diff = create_formatted_dict(file1, file2)
+    return json.dumps(sorted_diff, indent=2, separators=("", ": "))
 
 
-def create_formated_dict(dict1, dict2):
-    sorted_keys = sorted(list(set(dict1.keys()) | set(dict2.keys())))
+def create_formatted_dict(dict1, dict2):
+    sorted_keys = sorted(set(dict1) | set(dict2))
     formatted_dict = {}
     for key in sorted_keys:
         if key in dict1 and key in dict2 and key not in formatted_dict:
