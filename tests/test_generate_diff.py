@@ -15,15 +15,15 @@ with open(CORRECT_FILE_PATH) as correct_file:
 
 def test_create_formatted_diff():
     assert cfd(FIRST_FILE, SECOND_FILE) == {
-        '- follow': False, 
-        '  host': 'hexlet.io', 
-        '- proxy': '123.234.53.22', 
-        '- timeout': 50, 
-        '+ timeout': 20, 
+        '- follow': False,
+        '  host': 'hexlet.io',
+        '- proxy': '123.234.53.22',
+        '- timeout': 50,
+        '+ timeout': 20,
         '+ verbose': True
     }
     assert cfd({}, {}) == {}
 
 
-def test_generate_diff(): 
+def test_generate_diff():
     gd(FIRST_FILE_PATH, SECOND_FILE_PATH) == CORRECT_FILE

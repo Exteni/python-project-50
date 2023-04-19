@@ -6,7 +6,6 @@ def generate_diff(file1_path, file2_path):
         file1 = json.load(file1)
         file2 = json.load(file2)
     formatted_diff = create_formatted_diff(file1, file2)
-    print(formatted_diff)
     return json.dumps(formatted_diff, indent=2, separators=("", ": "))
 
 
