@@ -11,4 +11,8 @@ package-install:
 	python3 -m pip install --user dist/*.whl
 
 lint:
-	poetry run flake8 difference_calculator
+	poetry run flake8 difference_calculator tests
+
+
+tests:
+	poetry run pytest
