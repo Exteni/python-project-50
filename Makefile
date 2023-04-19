@@ -13,6 +13,5 @@ package-install:
 lint:
 	poetry run flake8 difference_calculator tests
 
-
-tests:
+test:
 	poetry run pytest
