@@ -1,4 +1,4 @@
-name: Python CI
+name: Pyci
 
 on:
   - push
@@ -7,27 +7,39 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8, 3.9]
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
+          python-version: "3.10"
+
+      - name: "Install poetry"
         run: |
           pip install poetry
-          make install
-      - name: Run linter and pytest
+
+      - name: "Install requirements"
         run: |
-          make check
-      - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v3.2.0
-        if: github.ref_name == 'main'
+          make install
+
+      - name: Run linter
+        run: |
+          make lint
+
+      - name: Run tests
+        run: |
+          make test
+
+      - name: Create Reporter
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+      - name: Test
+        run: |
+          make test-cov
+      - name: Sending Reporter
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: make test-coverage
-          debug: true
+          GITHUB_TOKEN: ${{ secrets.TEST_REPORTER_ID }}
+        run: |
+          ./cc-test-reporter after-build -r "$GITHUB_TOKEN"
