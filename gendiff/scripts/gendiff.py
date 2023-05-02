@@ -1,5 +1,5 @@
-from difference_calculator.generate_diff import generate_diff
-from difference_calculator.cli import parse_args
+from gendiff.generate_diff import generate_diff
+from gendiff.cli import parse_args
 
 
 def main():

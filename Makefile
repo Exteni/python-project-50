@@ -11,7 +11,7 @@ package-install:
 	python3 -m pip install dist/*.whl --force-reinstall
 
 lint:
-	poetry run flake8 difference_calculator tests
+	poetry run flake8 gendiff tests
 
 test:
 	poetry run pytest -vv

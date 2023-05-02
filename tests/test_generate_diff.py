@@ -1,6 +1,6 @@
 import json
-from difference_calculator.generate_diff import generate_diff as gd
-from difference_calculator.generate_diff import create_formatted_diff as cfd
+from gendiff.generate_diff import generate_diff as gd
+from gendiff.generate_diff import create_formatted_diff as cfd
 
 
 FIRST_FILE_PATH = "tests//fixtures//plain_file1.json"

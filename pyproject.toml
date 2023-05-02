@@ -4,13 +4,13 @@ version = "0.1.0"
 description = ""
 authors = ["Exteni <Extenit@yandex.ru>"]
 readme = "README.md"
-packages = [{include = "difference_calculator"}]
+packages = [{include = "gendiff"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 
 [tool.poetry.scripts]
-gendiff = "difference_calculator.scripts.gendiff:main"
+gendiff = "gendiff.scripts.gendiff:main"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
