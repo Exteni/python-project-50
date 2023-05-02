@@ -15,7 +15,7 @@ def create_formatted_diff(file1, file2):
     sorted_keys = sorted(set(file1) | set(file2))
     formatted_dict = {}
     for key in sorted_keys:
-        if key not in formatted_dict and key in file1 and key in file2:
+        if key in file1 and key in file2:
             if file1[key] == file2[key]:
                 formatted_dict[f"  {key}"] = file1[key]
             else:
